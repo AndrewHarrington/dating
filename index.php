@@ -13,8 +13,23 @@ require_once('vendor/autoload.php');
 $f3 = Base::instance();
 
 $f3->route('GET /', function (){
-    $view = new Template();
+    $view = new View();
     echo $view->render('views/home.html');
+});
+
+$f3->route("GET /personalInfo", function(){
+    $view = new View();
+    echo $view->render("views/personalInfo.php");
+});
+
+$f3->route("GET /profileEntry", function(){
+    $view = new View();
+    echo $view->render("views/profileEntry.php");
+});
+
+$f3->route("GET /interests", function(){
+    $view = new View();
+    echo $view->render("views/interests.php");
 });
 
 $f3->run();
