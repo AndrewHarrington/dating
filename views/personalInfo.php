@@ -1,3 +1,53 @@
+<?php
+    session_start();
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        //validate
+        $errorFound = false;
+        //fname
+        if(!isset($_POST['fname'])){
+            $errorFound = true;
+            //display appropriate error
+        }
+        //lname
+        if(!isset($_POST['lname'])){
+            $errorFound = true;
+            //display appropriate error
+        }
+        //age
+        if(!isset($_POST['age'])){
+            $errorFound = true;
+            //display appropriate error
+        }
+        //gender
+        if(!isset($_POST['gender'])){
+            $errorFound = true;
+            //display appropriate error
+        }
+        //phone
+        if(!isset($_POST['phone'])){
+            $errorFound = true;
+            //display appropriate error
+        }
+        if(!$errorFound){
+            //store to session
+            $_SESSION['fname'] = $_POST['fname'];
+            $_SESSION['lname'] = $_POST['lname'];
+            $_SESSION['age'] = $_POST['age'];
+            $gender = $_POST['gender'];
+            if($gender['0'] == 'M'){
+                $_SESSION['gender'] = 'M';
+            }
+            else{
+                $_SESSION['gender'] = 'F';
+            }
+            $_SESSION['phone'] = $_POST['phone'];
+            //redirect
+
+            //EESA BROKEE
+            //header("Location: profileEntry");
+        }
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +65,7 @@
     <a class="navbar-brand" href="328/dating">Latin Love</a>
 </nav>
 <div class="p-2 border rounded m-5">
-    <form method="GET" action="profileEntry">
+    <form method="POST" action="personalInfo">
         <div class="form-row">
             <h1 class="border-bottom col">Personal Information</h1>
         </div>
@@ -24,18 +74,18 @@
                 <!--String Fields -->
                 <div class="form-group">
                     <label class="font-weight-bold" for="fname">First Name</label>
-                    <input type="text" class="form-control" id="fname" placeholder="Enter Your First Name Here">
+                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name Here">
                 </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold" for="lname">Last Name</label>
-                    <input type="text" class="form-control" id="lname" placeholder="Enter Your Last Name Here">
+                    <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name Here">
                 </div>
 
                 <!-- Age field -->
                 <div class="form-group">
                     <label class="font-weight-bold"  for="age">Age</label>
-                    <input type="text" class="form-control" id="age" placeholder="Enter Your age">
+                    <input type="text" class="form-control" id="age" name="age" placeholder="Enter Your age">
                 </div>
 
                 <!-- Gender Radio Button-->
@@ -56,11 +106,13 @@
                 <!-- Phone number -->
                 <div class="form-group mt-1">
                     <label class="font-weight-bold"  for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="222-333-4444">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="222-333-4444">
                 </div>
             </div>
-            <div class="col-md-4 h-100">
-                <p>Note trial</p>
+            <div class="col-md-4 h-100 border rounded bg-light mt-2">
+                <p class="text-center"><b>Note:</b> All information entered is protected by our
+                    <a href="privacyPolicy.php">privacy policy</a>.
+                Profile information can only be viewed by others with your permission.</p>
             </div>
         </div>
         <div class="text-right">
