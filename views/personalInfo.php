@@ -7,26 +7,25 @@
         if(!isset($_POST['fname'])){
             $errorFound = true;
             //display appropriate error
+            echo 'You need to enter your first name<br>';
         }
         //lname
         if(!isset($_POST['lname'])){
             $errorFound = true;
             //display appropriate error
+            echo 'You need to enter your last name<br>';
         }
         //age
         if(!isset($_POST['age'])){
             $errorFound = true;
             //display appropriate error
-        }
-        //gender
-        if(!isset($_POST['gender'])){
-            $errorFound = true;
-            //display appropriate error
+            echo 'You need to enter your age<br>';
         }
         //phone
         if(!isset($_POST['phone'])){
             $errorFound = true;
             //display appropriate error
+            echo 'You need to enter your phone number<br>';
         }
         if(!$errorFound){
             //store to session
