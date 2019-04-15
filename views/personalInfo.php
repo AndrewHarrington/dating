@@ -41,9 +41,8 @@
                 $_SESSION['gender'] = 'F';
             }
             $_SESSION['phone'] = $_POST['phone'];
-            //redirect
 
-            //EESA BROKEE
+            //redirect
             header("Location: profileEntry");
         }
     }
@@ -62,12 +61,12 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="328/dating">Latin Love</a>
+    <a class="navbar-brand" href="/328/dating">Latin Love</a>
 </nav>
-<div>
+<div class="alert alert-danger <?if(!$errorFound){echo 'd-none';}?>" role="alert">
     <p><?
         foreach ($errors as $key=>$value){
-            echo "$value <br>";
+            echo "$value";
         }
         ?></p>
 </div>
@@ -81,18 +80,21 @@
                 <!--String Fields -->
                 <div class="form-group">
                     <label class="font-weight-bold" for="fname">First Name</label>
-                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name Here">
+                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name Here"
+                           value="<?if($errorFound){echo $_POST['fname'];}?>">
                 </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold" for="lname">Last Name</label>
-                    <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name Here">
+                    <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name Here"
+                        value="<?if($errorFound){echo $_POST['lname'];}?>">
                 </div>
 
                 <!-- Age field -->
                 <div class="form-group">
                     <label class="font-weight-bold"  for="age">Age</label>
-                    <input type="text" class="form-control" id="age" name="age" placeholder="Enter Your age">
+                    <input type="text" class="form-control" id="age" name="age" placeholder="Enter Your age"
+                           value="<?if($errorFound){echo $_POST['age'];}?>">
                 </div>
 
                 <!-- Gender Radio Button-->
@@ -113,7 +115,8 @@
                 <!-- Phone number -->
                 <div class="form-group mt-1">
                     <label class="font-weight-bold"  for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="222-333-4444">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="123-456-7890"
+                           value="<?if($errorFound){echo $_POST['phone'];}?>">
                 </div>
             </div>
             <div class="col-md-4 h-100 border rounded bg-light mt-2">
