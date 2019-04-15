@@ -1,3 +1,13 @@
+<?php
+session_start();
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    //store to session
+    $_SESSION['indoor'] = $_POST['indoor'];
+    $_SESSION['outdoor'] = $_POST['outdoor'];
+    //redirect
+    header('Location: profile');
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,7 +27,7 @@
 </nav>
 <div class=" p-2 border rounded m-5">
     <!--Start of form -->
-    <form method="GET" action="profileSummary.php">
+    <form method="POST" action="interests">
         <!--Form Title -->
         <div class="form-row">
             <h1 class="border-bottom col">Interests</h1>
