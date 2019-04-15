@@ -1,31 +1,32 @@
 <?php
     session_start();
+    $errors = array();
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         //validate
         $errorFound = false;
         //fname
-        if(!isset($_POST['fname'])){
+        if(empty($_POST['fname'])){
             $errorFound = true;
             //display appropriate error
-            echo 'You need to enter your first name<br>';
+            array_push($errors, 'You need to enter your first name<br>');
         }
         //lname
-        if(!isset($_POST['lname'])){
+        if(empty($_POST['lname'])){
             $errorFound = true;
             //display appropriate error
-            echo 'You need to enter your last name<br>';
+            array_push($errors, 'You need to enter your last name<br>');
         }
         //age
-        if(!isset($_POST['age'])){
+        if(empty($_POST['age'])){
             $errorFound = true;
             //display appropriate error
-            echo 'You need to enter your age<br>';
+            array_push($errors, 'You need to enter your age<br>');
         }
         //phone
-        if(!isset($_POST['phone'])){
+        if(empty($_POST['phone'])){
             $errorFound = true;
             //display appropriate error
-            echo 'You need to enter your phone number<br>';
+            array_push($errors, 'You need to enter your phone number<br>');
         }
         if(!$errorFound){
             //store to session
@@ -43,7 +44,7 @@
             //redirect
 
             //EESA BROKEE
-            //header("Location: profileEntry");
+            header("Location: profileEntry");
         }
     }
 ?>
@@ -63,6 +64,13 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="328/dating">Latin Love</a>
 </nav>
+<div>
+    <p><?
+        foreach ($errors as $key=>$value){
+            echo "$value <br>";
+        }
+        ?></p>
+</div>
 <div class="p-2 border rounded m-5">
     <form method="POST" action="personalInfo">
         <div class="form-row">
