@@ -32,4 +32,9 @@ $f3->route("GET|POST /interests", function(){
     echo $view->render("views/interests.php");
 });
 
+$f3->route("GET|POST /profile", function(){
+    $view = new View();
+    echo $view->render("views/profile.php");
+});
+
 $f3->run();
