@@ -1,37 +1,24 @@
 <?php
-session_start();
+require ('model/functions.php');
 $errors = array();
+$errorFound = false;
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     //validate
-    $errorFound = false;
-    //email
-    if(empty($_POST['email'])){
-        $errorFound = true;
-        array_push($errors, 'You need to enter an email<br>');
-    }
-    //bio
-    if(empty($_POST['bio'])){
-        $errorFound = true;
-        array_push($errors, 'You need to enter a biography<br>');
-    }
-    //store to session
+    $errors = validateProfileEntry();
+    $errorFound = !empty($errors);
     if(!$errorFound){
-        $_SESSION['email'] = $_POST['email'];
-        $_SESSION['state'] = $_POST['state'];
-        $seeking = $_POST['seeking'];
-        if($seeking['0'] == 'M'){
-            $_SESSION['seeking'] = 'M';
-        }
-        else{
-            $_SESSION['seeking'] = 'F';
-        }
-        $_SESSION['bio'] = $_POST['bio'];
-
+        //store to session
+        storeProfileEntry();
         //redirect
         header('Location: interests');
     }
 }
 ?>
+<!--
+- Andrew Harrington
+- 4/15/2019
+- Profile Info Form
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -42,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
-    <title>Document</title>
+    <title>Profile Info</title>
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
@@ -131,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <!-- Seeking -->
                 <!--Male-->
                 <label class="font-weight-bold d-block col-">Seeking</label>
-                <div class="form-check form-check-inline" id="radio button">
+                <div class="form-check form-check-inline" id="radio-button">
                     <input class="form-check-input" type="radio" name="seeking[]" id="Male" value="M" checked>
                     <label class="form-check-label" for="Male">
                         Male

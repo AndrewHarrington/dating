@@ -1,52 +1,25 @@
 <?php
     session_start();
+    require ('model/functions.php');
     $errors = array();
+    $errorFound = false;
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         //validate
-        $errorFound = false;
-        //fname
-        if(empty($_POST['fname'])){
-            $errorFound = true;
-            //display appropriate error
-            array_push($errors, 'You need to enter your first name<br>');
-        }
-        //lname
-        if(empty($_POST['lname'])){
-            $errorFound = true;
-            //display appropriate error
-            array_push($errors, 'You need to enter your last name<br>');
-        }
-        //age
-        if(empty($_POST['age'])){
-            $errorFound = true;
-            //display appropriate error
-            array_push($errors, 'You need to enter your age<br>');
-        }
-        //phone
-        if(empty($_POST['phone'])){
-            $errorFound = true;
-            //display appropriate error
-            array_push($errors, 'You need to enter your phone number<br>');
-        }
+        $errors = validatePersonalInfo();
+        $errorFound = !empty($errors);
         if(!$errorFound){
             //store to session
-            $_SESSION['fname'] = $_POST['fname'];
-            $_SESSION['lname'] = $_POST['lname'];
-            $_SESSION['age'] = $_POST['age'];
-            $gender = $_POST['gender'];
-            if($gender['0'] == 'M'){
-                $_SESSION['gender'] = 'M';
-            }
-            else{
-                $_SESSION['gender'] = 'F';
-            }
-            $_SESSION['phone'] = $_POST['phone'];
-
+            storePersonalInfo();
             //redirect
             header("Location: profileEntry");
         }
     }
 ?>
+<!--
+- Andrew Harrington
+- 4/15/2019
+- Personal Info Form
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -57,7 +30,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
-    <title>Personal Info Form</title>
+    <title>Personal Info</title>
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
@@ -99,7 +72,7 @@
 
                 <!-- Gender Radio Button-->
                 <label class="font-weight-bold d-block col-">Gender</label>
-                <div class="form-check form-check-inline" id="radio button">
+                <div class="form-check form-check-inline" id="radio-button">
                     <input class="form-check-input" type="radio" name="gender[]" id="Male" value="M" checked>
                     <label class="form-check-label" for="Male">
                         Male

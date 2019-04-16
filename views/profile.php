@@ -10,6 +10,11 @@ $seeking = $_SESSION[''];
 $interests = array_merge($_SESSION['indoor'], $_SESSION['outdoor']);
 $bio = $_SESSION['bio'];
 ?>
+<!--
+- Andrew Harrington
+- 4/15/2019
+- Profile Display Page
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +24,7 @@ $bio = $_SESSION['bio'];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 <body>
@@ -44,7 +49,7 @@ $bio = $_SESSION['bio'];
             <hr>
             <p>Seeking: <?echo $seeking?></p>
             <hr>
-            <p>Interests: <?print_r($interests)?></p>
+            <p>Interests: <?foreach ($interests as $key =>  $value){echo "$value ";}?></p>
 
         </div>
 
