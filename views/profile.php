@@ -1,6 +1,5 @@
 <?php
-require ('model/functions.php');
-$name = $_SESSION['fname'] . ' ' . $_SESSION['lname'];
+/*$name = $_SESSION['fname'] . ' ' . $_SESSION['lname'];
 $gender = $_SESSION['gender'];
 $age = $_SESSION['age'];
 $phone = $_SESSION['phone'];
@@ -9,6 +8,8 @@ $state = $_SESSION['state'];
 $seeking = $_SESSION[''];
 $interests = array_merge($_SESSION['indoor'], $_SESSION['outdoor']);
 $bio = $_SESSION['bio'];
+*/
+var_dump($_SESSION);
 ?>
 <!--
 - Andrew Harrington
@@ -35,21 +36,21 @@ $bio = $_SESSION['bio'];
     <div class="form-row ml-2 mt-2">
         <!--Left SIde-->
         <div class="col-md-6 h-100 border rounded">
-            <p class="mt-3">Name: <?echo $name?></p>
+            <p class="mt-3">Name: {{$_SESSION['name']}}</p>
             <hr>
-            <p>Gender: <?echo $gender?></p>
+            <p>Gender: {{@SESSION.gender}}</p>
             <hr>
-            <p>Age: <?echo $age?></p>
+            <p>Age: {{@SESSION.age}}</p>
             <hr>
-            <p>Phone: <?echo $phone?></p>
+            <p>Phone: {{ $_SESSION['phone'] }}</p>
             <hr>
-            <p>Email: <?echo $email?></p>
+            <p>Email: {{ @SESSION.email }}</p>
             <hr>
-            <p>State: <?echo $state?></p>
+            <p>State: {{ @SESSION['state'] }}</p>
             <hr>
-            <p>Seeking: <?echo $seeking?></p>
+            <p>Seeking: {{ $_SESSION.seeking }}</p>
             <hr>
-            <p>Interests: <?foreach ($interests as $key =>  $value){echo "$value ";}?></p>
+            <p>Interests: {{@SESSION.interests}}</p>
 
         </div>
 
@@ -57,7 +58,7 @@ $bio = $_SESSION['bio'];
         <div class="col-md-6 px-3">
             <img src="images/profile-pic.png" class="img-fluid rounded profile-pic" alt="Profile Pic">
             <h4>Biography</h4>
-            <p><?echo $bio?></p>
+            <p>{{@SESSION.bio}}</p>
         </div>
     </div>
 

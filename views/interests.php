@@ -1,12 +1,12 @@
 <?php
-require ('model/functions.php');
+/*require ('model/functions.php');
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     //store to session
     storeInterests();
     //redirect
     header('Location: profile');
 }
-?>
+*/?>
 <!--
 - Andrew Harrington
 - 4/15/2019
@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </nav>
 <div class=" p-2 border rounded m-5">
     <!--Start of form -->
-    <form method="POST" action="interests">
+    <form method="POST" action="profile">
         <!--Form Title -->
         <div class="form-row">
             <h1 class="border-bottom col">Interests</h1>

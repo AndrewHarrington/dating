@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    require ('model/functions.php');
+    /*require ('model/functions.php');
     $errors = array();
     $errorFound = false;
     if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -13,7 +12,7 @@
             //redirect
             header("Location: profileEntry");
         }
-    }
+    }*/
 ?>
 <!--
 - Andrew Harrington
@@ -36,15 +35,16 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/328/dating">Latin Love</a>
 </nav>
-<div class="alert alert-danger <?if(!$errorFound){echo 'd-none';}?>" role="alert">
-    <p><?
+<div class="alert alert-danger hidden <?/*if(!$errorFound){echo 'd-none';}*/?>" role="alert">
+    <!--<p><?/*
         foreach ($errors as $key=>$value){
             echo "$value";
         }
-        ?></p>
+        */?>
+    </p>-->
 </div>
 <div class="p-2 border rounded m-5">
-    <form method="POST" action="personalInfo">
+    <form method="POST" action="profileEntry">
         <div class="form-row">
             <h1 class="border-bottom col">Personal Information</h1>
         </div>
@@ -54,32 +54,32 @@
                 <div class="form-group">
                     <label class="font-weight-bold" for="fname">First Name</label>
                     <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name Here"
-                           value="<?if($errorFound){echo $_POST['fname'];}?>">
+                           value="<?/*if($errorFound){echo $_POST['fname'];}*/?>">
                 </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold" for="lname">Last Name</label>
                     <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name Here"
-                        value="<?if($errorFound){echo $_POST['lname'];}?>">
+                        value="<?/*if($errorFound){echo $_POST['lname'];}*/?>">
                 </div>
 
                 <!-- Age field -->
                 <div class="form-group">
                     <label class="font-weight-bold"  for="age">Age</label>
                     <input type="text" class="form-control" id="age" name="age" placeholder="Enter Your age"
-                           value="<?if($errorFound){echo $_POST['age'];}?>">
+                           value="<?/*if($errorFound){echo $_POST['age'];}*/?>">
                 </div>
 
                 <!-- Gender Radio Button-->
                 <label class="font-weight-bold d-block col-">Gender</label>
                 <div class="form-check form-check-inline" id="radio-button">
-                    <input class="form-check-input" type="radio" name="gender[]" id="Male" value="M" checked>
+                    <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" checked>
                     <label class="form-check-label" for="Male">
                         Male
                     </label>
                 </div>
                 <div class="form-check form-check-inline" id="gender">
-                    <input class="form-check-input" type="radio" name="gender[]" id="Female" value="F">
+                    <input class="form-check-input" type="radio" name="gender" id="Female" value="Female">
                     <label class="form-check-label" for="Female">
                         Female
                     </label>
@@ -89,7 +89,7 @@
                 <div class="form-group mt-1">
                     <label class="font-weight-bold"  for="phone">Phone Number</label>
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="123-456-7890"
-                           value="<?if($errorFound){echo $_POST['phone'];}?>">
+                           value="<?/*if($errorFound){echo $_POST['phone'];}*/?>">
                 </div>
             </div>
             <div class="col-md-4 h-100 border rounded bg-light mt-2">

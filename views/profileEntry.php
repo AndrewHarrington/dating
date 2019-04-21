@@ -1,5 +1,5 @@
 <?php
-require ('model/functions.php');
+/*require ('model/functions.php');
 $errors = array();
 $errorFound = false;
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header('Location: interests');
     }
 }
-?>
+*/?>
 <!--
 - Andrew Harrington
 - 4/15/2019
@@ -35,16 +35,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/328/dating">Latin Love</a>
 </nav>
-<div class="alert alert-danger <?if(!$errorFound){echo 'd-none';}?>" role="alert">
-    <p><?
+<div class="alert alert-danger d-none <?/*if(!$errorFound){echo 'd-none';}*/?>" role="alert">
+    <!--<p><?/*
         foreach ($errors as $key=>$value){
             echo "$value";
         }
-        ?></p>
+        */?></p>-->
 </div>
 <div class=" p-2 border rounded m-5">
     <!--Start of form -->
-    <form method="POST" action="profileEntry">
+    <form method="POST" action="interests">
         <!--String fields -->
         <div class="form-row">
             <h1 class="border-bottom col">Profile</h1>
@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <!-- Email -->
                 <label class="font-weight-bold" for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Here"
-                       value="<?if($errorFound){echo $_POST['email'];}?>">
+                       value="<?/*if($errorFound){echo $_POST['email'];}*/?>">
 
                 <!-- State -->
                 <label class="font-weight-bold" for="state">State</label>
@@ -119,14 +119,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <!--Male-->
                 <label class="font-weight-bold d-block col-">Seeking</label>
                 <div class="form-check form-check-inline" id="radio-button">
-                    <input class="form-check-input" type="radio" name="seeking[]" id="Male" value="M" checked>
+                    <input class="form-check-input" type="radio" name="seeking" id="Male" value="M" checked>
                     <label class="form-check-label" for="Male">
                         Male
                     </label>
                 </div>
                 <!--Female-->
                 <div class="form-check form-check-inline" id="gender">
-                    <input class="form-check-input" type="radio" name="seeking[]" id="Female" value="F">
+                    <input class="form-check-input" type="radio" name="seeking" id="Female" value="F">
                     <label class="form-check-label" for="Female">
                         Female
                     </label>
@@ -136,7 +136,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <!-- Biography -->
                 <div class="form-group">
                     <label class="font-weight-bold" for="bio">Biography</label>
-                    <textarea class="form-control overflow-auto" id="bio" name="bio" rows="6"><?if($errorFound){echo $_POST['bio'];}?></textarea>
+                    <textarea class="form-control overflow-auto" id="bio" name="bio" rows="6"><?/*if($errorFound){echo $_POST['bio'];}*/?></textarea>
                 </div>
             </div>
         </div>
