@@ -9,7 +9,6 @@ $seeking = $_SESSION[''];
 $interests = array_merge($_SESSION['indoor'], $_SESSION['outdoor']);
 $bio = $_SESSION['bio'];
 */
-var_dump($_SESSION);
 ?>
 <!--
 - Andrew Harrington
