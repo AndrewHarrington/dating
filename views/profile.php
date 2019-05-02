@@ -35,7 +35,7 @@ $bio = $_SESSION['bio'];
     <div class="form-row ml-2 mt-2">
         <!--Left SIde-->
         <div class="col-md-6 h-100 border rounded">
-            <p class="mt-3">Name: {{$_SESSION['name']}}</p>
+            <p class="mt-3">Name: {{@SESSION.fname}} {{@SESSION.lname}}</p>
             <hr>
             <p>Gender: {{@SESSION.gender}}</p>
             <hr>
@@ -47,7 +47,7 @@ $bio = $_SESSION['bio'];
             <hr>
             <p>State: {{ @SESSION['state'] }}</p>
             <hr>
-            <p>Seeking: {{ $_SESSION.seeking }}</p>
+            <p>Seeking: {{ @SESSION.seeking }}</p>
             <hr>
             <p>Interests: {{@SESSION.interests}}</p>
 

@@ -1,19 +1,3 @@
-<?php
-/*require ('model/functions.php');
-$errors = array();
-$errorFound = false;
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    //validate
-    $errors = validateProfileEntry();
-    $errorFound = !empty($errors);
-    if(!$errorFound){
-        //store to session
-        storeProfileEntry();
-        //redirect
-        header('Location: interests');
-    }
-}
-*/?>
 <!--
 - Andrew Harrington
 - 4/15/2019
@@ -35,16 +19,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/328/dating">Latin Love</a>
 </nav>
-<div class="alert alert-danger d-none <?/*if(!$errorFound){echo 'd-none';}*/?>" role="alert">
-    <!--<p><?/*
-        foreach ($errors as $key=>$value){
-            echo "$value";
-        }
-        */?></p>-->
-</div>
+<check if="{{isset(@profileEntryERRS)}}">
+    <p class="alert alert-danger" role="alert">
+        <repeat group="{{@profileEntryERRS}}" value="{{@err}}">
+            {{@err}} <br>
+        </repeat>
+    </p>
+</check>
 <div class=" p-2 border rounded m-5">
     <!--Start of form -->
-    <form method="POST" action="interests">
+    <form method="POST" action="">
         <!--String fields -->
         <div class="form-row">
             <h1 class="border-bottom col">Profile</h1>
@@ -56,12 +40,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <!-- Email -->
                 <label class="font-weight-bold" for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Here"
-                       value="<?/*if($errorFound){echo $_POST['email'];}*/?>">
+                       value="{{$_POST['email']}}">
 
                 <!-- State -->
                 <label class="font-weight-bold" for="state">State</label>
-                <select class="form-control" name="state" id="state"
-                        <?if($errorFound){echo 'selected="'.$_POST['state'].'"';}?>>
+                <select class="form-control" name="state" id="state" selected="{{$_POST['state']}}">
                     <option>Alabama</option>
                     <option>Alaska</option>
                     <option>Arizona</option>
@@ -136,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 <!-- Biography -->
                 <div class="form-group">
                     <label class="font-weight-bold" for="bio">Biography</label>
-                    <textarea class="form-control overflow-auto" id="bio" name="bio" rows="6"><?/*if($errorFound){echo $_POST['bio'];}*/?></textarea>
+                    <textarea class="form-control overflow-auto" id="bio" name="bio" rows="6">{{$_POST['bio']}}</textarea>
                 </div>
             </div>
         </div>

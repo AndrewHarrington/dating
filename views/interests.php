@@ -1,12 +1,3 @@
-<?php
-/*require ('model/functions.php');
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    //store to session
-    storeInterests();
-    //redirect
-    header('Location: profile');
-}
-*/?>
 <!--
 - Andrew Harrington
 - 4/15/2019
@@ -29,9 +20,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/328/dating">Latin Love</a>
 </nav>
+<check if="{{isset(@interestERRS)}}">
+    <p class="alert alert-danger" role="alert">
+        <repeat group="{{@interestERRS}}" value="{{@err}}">
+            {{@err}} <br>
+        </repeat>
+    </p>
+</check>
 <div class=" p-2 border rounded m-5">
     <!--Start of form -->
-    <form method="POST" action="profile">
+    <form method="POST" action="">
         <!--Form Title -->
         <div class="form-row">
             <h1 class="border-bottom col">Interests</h1>
@@ -40,73 +38,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <!-- ***************Indoor checkbox Button***************************************-->
 
         <div class="form-row">
-            <label class="font-weight-bold d-block col-md-12">In-door Interests</label>
+            <label class="font-weight-bold d-block col-md-12">Indoor Interests</label>
         </div>
         <div class="ml-2">
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='tv' value='tv'>
-                <label class='form-check-label' for='tv'>Tv</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='mov' value='mov'>
-                <label class='form-check-label' for='mov'>Movies</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='cook' value='cook'>
-                <label class='form-check-label' for='cook'>Cooking</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='board' value='board'>
-                <label class='form-check-label' for='board'>Board Games</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='puzz' value='puzz'>
-                <label class='form-check-label' for='puzz'>Puzzles</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='read' value='read'>
-                <label class='form-check-label' for='read'>Reading</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='card' value='card'>
-                <label class='form-check-label' for='card'>Playing cards</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='indoor[]' id='video' value='video'>
-                <label class='form-check-label' for='video'>Video Games</label>
-            </div>
+            <repeat group="{{@indoor}}" key="{{@key}}" value="{{@val}}">
+                <div class="form-check form-check-inline col-md-2">
+                    <input class='form-check-input' type='checkbox' name='indoor[]' id='{{@key}}' value='{{@key}}'>
+                    <label class='form-check-label' for='{{@key}}'>{{@val}}</label>
+                </div>
+            </repeat>
         </div>
 
         <!-- ***************Outdoor checkbox Button***************************************-->
 
         <div class="form-row">
-            <label class="font-weight-bold d-block col-md-12">Out-door Interests</label>
+            <label class="font-weight-bold d-block col-md-12">Outdoor Interests</label>
         </div>
         <div class="ml-2">
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='outdoor[]' id='hike' value='hike'>
-                <label class='form-check-label' for='hike'>Hiking</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='outdoor[]' id='bike' value='bike'>
-                <label class='form-check-label' for='bike'>Biking</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='outdoor[]' id='swim' value='swim'>
-                <label class='form-check-label' for='swim'>Swimming</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='outdoor[]' id='collect' value='collect'>
-                <label class='form-check-label' for='collect'>Collecting</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='outdoor[]' id='walk' value='walk'>
-                <label class='form-check-label' for='walk'>Walking</label>
-            </div>
-            <div class="form-check form-check-inline col-md-2">
-                <input class='form-check-input' type='checkbox' name='outdoor[]' id='climb' value='climb'>
-                <label class='form-check-label' for='climb'>Climbing</label>
-            </div>
+            <repeat group="{{@outdoor}}" key="{{@key}}" value="{{@val}}">
+                <div class="form-check form-check-inline col-md-2">
+                    <input class='form-check-input' type='checkbox' name='outdoor[]' id='{{@key}}' value='{{@key}}'>
+                    <label class='form-check-label' for='{{@key}}'>{{@val}}</label>
+                </div>
+            </repeat>
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary">Next</button>
