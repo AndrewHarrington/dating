@@ -40,7 +40,7 @@
                 <!-- Email -->
                 <label class="font-weight-bold" for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Here"
-                       value="{{$_POST['email']}}">
+                       value="{{$_POST['email']}}" required>
 
                 <!-- State -->
                 <label class="font-weight-bold" for="state">State</label>

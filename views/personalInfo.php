@@ -37,20 +37,20 @@
                 <div class="form-group">
                     <label class="font-weight-bold" for="fname">First Name</label>
                     <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name Here"
-                           value="{{$_POST['fname']}}">
+                           value="{{$_POST['fname']}}" required>
                 </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold" for="lname">Last Name</label>
                     <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name Here"
-                        value="{{$_POST['lname']}}">
+                        value="{{$_POST['lname']}}" required>
                 </div>
 
                 <!-- Age field -->
                 <div class="form-group">
                     <label class="font-weight-bold"  for="age">Age</label>
                     <input type="text" class="form-control" id="age" name="age" placeholder="Enter Your age"
-                           value="{{$_POST['age']}}">
+                           value="{{$_POST['age']}}" required>
                 </div>
 
                 <!-- Gender Radio Button-->
@@ -72,7 +72,7 @@
                 <div class="form-group mt-1">
                     <label class="font-weight-bold"  for="phone">Phone Number</label>
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="123-456-7890"
-                           value="{{$_POST['phone']}}">
+                           value="{{$_POST['phone']}}" required>
                 </div>
             </div>
             <div class="col-md-4 h-100 border rounded bg-light mt-2">
