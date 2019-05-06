@@ -11,7 +11,6 @@ error_reporting(E_ALL);
 //start the session
 session_start();
 
-# {{ $_SESSION['varName'} }} || {{ @SESSION.varName }}
 require_once('vendor/autoload.php');
 require('model/functions.php');
 
@@ -80,7 +79,7 @@ $f3->route("GET|POST /interests", function($f3){
     echo $view->render("views/interests.php");
 });
 
-$f3->route("GET|POST /profile", function($f3){
+$f3->route("GET|POST /profile", function(){
     $view = new Template();
     echo $view->render("views/profile.php");
 });
