@@ -74,6 +74,14 @@
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="123-456-7890"
                            value="{{$_POST['phone']}}" required>
                 </div>
+
+                <!-- Premium Account -->
+                <label class="font-weight-bold">Premium Membership</label>
+                <div class="form-group mt-1">
+                    <input type="checkbox" id="prem" name="prem">
+                    <label for="prem">Sign me up for a premium account</label>
+                </div>
+
             </div>
             <div class="col-md-4 h-100 border rounded bg-light mt-2">
                 <p class="text-center"><b>Note:</b> All information entered is protected by our

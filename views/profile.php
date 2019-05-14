@@ -35,29 +35,32 @@ $bio = $_SESSION['bio'];
     <div class="form-row ml-2 mt-2">
         <!--Left SIde-->
         <div class="col-md-6 h-100 border rounded">
-            <p class="mt-3">Name: {{@SESSION.fname}} {{@SESSION.lname}}</p>
+            <p class="mt-3">Name: {{@SESSION.user->getFname()}} {{@SESSION.user->getLname()}}</p>
             <hr>
-            <p>Gender: {{@SESSION.gender}}</p>
+            <p>Gender: {{@SESSION.user->getGender()}}</p>
             <hr>
-            <p>Age: {{@SESSION.age}}</p>
+            <p>Age: {{@SESSION.user->getAge()}}</p>
             <hr>
-            <p>Phone: {{ $_SESSION['phone'] }}</p>
+            <p>Phone: {{ @SESSION.user->getPhone()}}</p>
             <hr>
-            <p>Email: {{ @SESSION.email }}</p>
+            <p>Email: {{ @SESSION.user->getEmail() }}</p>
             <hr>
-            <p>State: {{ @SESSION['state'] }}</p>
+            <p>State: {{ @SESSION.user->getState() }}</p>
             <hr>
-            <p>Seeking: {{ @SESSION.seeking }}</p>
-            <hr>
-            <p>Interests: {{@SESSION.interests}}</p>
-
+            <p>Seeking: {{ @SESSION.user->getSeeking() }}</p>
+            <check if="{{@SESSION.user instanceof PremiumMember}}">
+                <true>
+                    <hr>
+                    <p>Interests: {{@SESSION.user->interestsToString()}}</p>
+                </true>
+            </check>
         </div>
 
         <!--Right Side-->
         <div class="col-md-6 px-3">
             <img src="images/profile-pic.png" class="img-fluid rounded profile-pic" alt="Profile Pic">
             <h4>Biography</h4>
-            <p>{{@SESSION.bio}}</p>
+            <p>{{@SESSION.user->getBio()}}</p>
         </div>
     </div>
 

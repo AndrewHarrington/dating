@@ -1,5 +1,5 @@
 {
-  "name": "aharring/328/dating",
+  "name": "aharring/328/dating-dev/dating",
   "authors": [
     {
       "name": "Andrew Harrington",
@@ -8,5 +8,8 @@
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/"]
   }
 }

@@ -8,11 +8,11 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//start the session
-session_start();
-
 require_once('vendor/autoload.php');
 require('model/functions.php');
+
+//start the session
+session_start();
 
 $f3 = Base::instance();
 $indoor = array('tv'=>'TV',
@@ -43,6 +43,17 @@ $f3->route("GET|POST /personalInfo", function($f3){
         $errors = validatePersonalInfo($f3);
 
         if(empty($errors)){
+            if(isset($_POST['prem'])){
+                $member = new PremiumMember($_POST['fname'], $_POST['lname'], $_POST['age'],
+                    $_POST['gender'], $_POST['phone']);
+            }
+            else{
+                $member = new Member($_POST['fname'], $_POST['lname'], $_POST['age'],
+                    $_POST['gender'], $_POST['phone']);
+            }
+
+            $_SESSION['user'] = $member;
+
             //reroute
             $f3->reroute("/profileEntry");
         }
@@ -56,8 +67,21 @@ $f3->route("GET|POST /profileEntry", function($f3){
         $errors = validateProfileEntry($f3);
 
         if(empty($errors)){
-            //reroute
-            $f3->reroute("/interests");
+            //get the user
+            $user = $_SESSION['user'];
+            $user->setBio($_POST['bio']);
+            $user->setEmail($_POST['email']);
+            $user->setState($_POST['state']);
+            $user->setSeeking($_POST['seeking'][0]);
+
+            if($user instanceof PremiumMember){
+                //reroute
+                $f3->reroute("/interests");
+            }
+            else{
+                //reroute
+                $f3->reroute('/profile');
+            }
         }
     }
     $view = new Template();
@@ -69,8 +93,10 @@ $f3->route("GET|POST /interests", function($f3){
         $valid = validateInterests($f3);
 
         if($valid){
-            //save to session
-            storeInterests($f3);
+            //get the user
+            $user = $_SESSION['user'];
+            $user->setInDoorInterests($_POST['indoor']);
+            $user->setOutDoorInterests($_POST['outdoor']);
             //reroute
             $f3->reroute("/profile");
         }

@@ -40,6 +40,9 @@ function validOutdoor($outdoor, $options){
 function validatePersonalInfo($f3){
     $errors = array();
 
+    //prem
+    $_SESSION['prem'] = isset($_POST['prem']);
+
     //fname
     if(!validName($_POST['fname'])){
         $errors['fnameERR'] = 'The first name is invalid';
@@ -122,4 +125,27 @@ function storeInterests($f3){
     }
 
     $_SESSION['interests'] = substr_replace($newInterests, "", -2);
+}
+
+function stringifyOneArray($array, $starter){
+    $string = '';
+    //loop over the array and grab the necessary conversion in the original array
+    foreach ($array as $key => $value){
+        $string .= $starter["$value"] . ', ';
+    }
+
+    return substr_replace($string, "", -2);
+}
+
+function stringifyTwoArrays($array1, $array2, $starter1, $starter2){
+    $string = '';
+    //loop over each array and append the conversions to the final string
+    foreach ($array1 as $key => $value){
+        $string .= $starter1["$value"] . ', ';
+    }
+    foreach ($array2 as $key => $value){
+        $string .= $starter2["$value"] . ', ';
+    }
+
+    return substr_replace($string, "", -2);
 }
