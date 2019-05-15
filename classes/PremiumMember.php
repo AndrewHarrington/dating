@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Class PremiumMember
+ *
+ * Simple class representing a premium member on my dating site
+ *
+ * This class is a child class of the Member class (found in this same directory).
+ * This class inherits all of the data, accessors, and modifiers of the Member class and adds more data on to it.
+ *
+ * @author Andrew Harrington
+ * @version 1.0
+ */
 class PremiumMember extends Member
 {
     const INDOOR = array('tv'=>'TV',

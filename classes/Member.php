@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Class Member
+ *
+ * Simple class representing a standard member on my dating site
+ *
+ * This class is the parent of the PremiumMember class (found in this directory).
+ * It contains user data and the necessary accessors and modifiers for interacting with this data
+ *
+ * @author Andrew Harrington
+ * @version 1.0
+ */
 class Member
 {
     private $_fname;
