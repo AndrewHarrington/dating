@@ -127,25 +127,23 @@ function storeInterests($f3){
     $_SESSION['interests'] = substr_replace($newInterests, "", -2);
 }
 
-function stringifyOneArray($array, $starter){
+function stringifyOneArray(array $array, array $starter){
     $string = '';
     //loop over the array and grab the necessary conversion in the original array
     foreach ($array as $key => $value){
-        $string .= $starter["$value"] . ', ';
+        if(array_key_exists($value, $starter)){
+            $string .= $starter["$value"] . ', ';
+        }
     }
 
     return substr_replace($string, "", -2);
 }
 
-function stringifyTwoArrays($array1, $array2, $starter1, $starter2){
+function stringifyTwoArrays(array $array1, array $array2, array $starter1, array $starter2){
     $string = '';
     //loop over each array and append the conversions to the final string
-    foreach ($array1 as $key => $value){
-        $string .= $starter1["$value"] . ', ';
-    }
-    foreach ($array2 as $key => $value){
-        $string .= $starter2["$value"] . ', ';
-    }
-
-    return substr_replace($string, "", -2);
+    $string .= stringifyOneArray($array1, $starter1);
+    $string .= ', ';
+    $string .= stringifyOneArray($array2, $starter2);
+    return $string;
 }
