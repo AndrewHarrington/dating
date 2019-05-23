@@ -138,6 +138,7 @@ class Database
         if($member instanceof PremiumMember){
             $premium = 1;
         }
+        $image = '';
         $this->_newMember->bindParam(':fname', $member->getFname(), PDO::PARAM_STR);
         $this->_newMember->bindParam(':lname', $member->getLname(), PDO::PARAM_STR);
         $this->_newMember->bindParam(':age', $member->getAge(), PDO::PARAM_INT);
@@ -148,7 +149,7 @@ class Database
         $this->_newMember->bindParam(':seeking', $member->getSeeking(), PDO::PARAM_STR);
         $this->_newMember->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
         $this->_newMember->bindParam(':premium', $premium, PDO::PARAM_BOOL);
-        $this->_newMember->bindParam(':image', '', PDO::PARAM_STR);
+        $this->_newMember->bindParam(':image', $image, PDO::PARAM_STR);
         $this->_newMember->execute();
 
         if($premium == 1){
