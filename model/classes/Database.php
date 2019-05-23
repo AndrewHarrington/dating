@@ -71,11 +71,18 @@ class Database
 
     const GET_ALL_MEMBERS =
         "
-          SELECT * 
+          SELECT member.member_id AS id, concat(member.fname, ' ', member.lname) AS name, member.age, 
+            member.phone, member.email, member.state, member.gender, member.seeking, member.premium, 
+            GROUP_CONCAT(interests.interest SEPARATOR ', ') as interests
           FROM member
           INNER JOIN member_interests ON member.member_id = member_interests.member_id
           INNER JOIN interests on interests.interest_id = member_interests.interests_id
-          ORDER BY member.member_id;
+          UNION
+          SELECT member_id AS id, concat(fname, ' ', lname) AS name, age, phone, email, state, gender, seeking,
+          	premium, '' AS interests
+          FROM member
+          WHERE premium = 0
+          ORDER BY name ASC
          ";
     const GET_SPECIFIC_MEMBER =
         "
@@ -127,39 +134,27 @@ class Database
     }
 
     public function insertMember($member){
-        $fname = $member->getFname();
-        $lname = $member->getLname();
-        $age = $member->getAge();
-        $gender = $member->getGender();
-        $phone = $member->getPhone();
-        $email = $member->getEmail();
-        $state = $member->getState();
-        $seeking = $member->getSeeking();
-        $bio = $member->getBio();
         $premium = 0;
         if($member instanceof PremiumMember){
             $premium = 1;
         }
-        $image = '';
-        $this->_newMember->bindParam(':fname', $fname, PDO::PARAM_STR);
-        $this->_newMember->bindParam(':lname', $lname, PDO::PARAM_STR);
-        $this->_newMember->bindParam(':age', $age, PDO::PARAM_INT);
-        $this->_newMember->bindParam(':gender', $gender, PDO::PARAM_STR);
-        $this->_newMember->bindParam(':phone', $phone, PDO::PARAM_INT);
-        $this->_newMember->bindParam(':email', $email, PDO::PARAM_STR);
-        $this->_newMember->bindParam(':state', $state, PDO::PARAM_STR);
-        $this->_newMember->bindParam(':seeking', $seeking, PDO::PARAM_STR);
-        $this->_newMember->bindParam(':bio', $bio, PDO::PARAM_STR);
+        $this->_newMember->bindParam(':fname', $member->getFname(), PDO::PARAM_STR);
+        $this->_newMember->bindParam(':lname', $member->getLname(), PDO::PARAM_STR);
+        $this->_newMember->bindParam(':age', $member->getAge(), PDO::PARAM_INT);
+        $this->_newMember->bindParam(':gender', $member->getGender(), PDO::PARAM_STR);
+        $this->_newMember->bindParam(':phone', $member->getPhone(), PDO::PARAM_INT);
+        $this->_newMember->bindParam(':email', $member->getEmail(), PDO::PARAM_STR);
+        $this->_newMember->bindParam(':state', $member->getState(), PDO::PARAM_STR);
+        $this->_newMember->bindParam(':seeking', $member->getSeeking(), PDO::PARAM_STR);
+        $this->_newMember->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
         $this->_newMember->bindParam(':premium', $premium, PDO::PARAM_BOOL);
-        $this->_newMember->bindParam(':image', $image, PDO::PARAM_STR);
+        $this->_newMember->bindParam(':image', '', PDO::PARAM_STR);
         $this->_newMember->execute();
 
         if($premium == 1){
             $this->_getIdentity->execute();
             $id = $this->_getIdentity->fetch(PDO::FETCH_ASSOC);
-            print_r($id);
             $id = $id['@@identity'];
-            echo $id;
             $this->insertInterests($member, $id);
         }
     }
@@ -173,7 +168,6 @@ class Database
 
         foreach ($indoor as $key => $value){
             $found = array_search($value, self::INDOOR) + 1;
-            echo $value . ' - ' . $found;
             $this->_newInterests->bindParam(':interest_id', $found);
             $this->_newInterests->execute();
         }
@@ -181,7 +175,6 @@ class Database
         //+9
         foreach ($outdoor as $key => $value){
             $found = array_search($value, self::OUTDOOR) + 9;
-            echo $value . ' - ' . $found;
             $this->_newInterests->bindParam(':interest_id', $found);
             $this->_newInterests->execute();
         }
@@ -189,7 +182,8 @@ class Database
     }
 
     public function getMembers(){
-        return $this->_getMembers->execute();
+        $this->_getMembers->execute();
+        return $this->_getMembers->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getMember($memberID){
