@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label class="font-weight-bold" for="lname">Last Name</label>
                     <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name Here"
-                        value="{{$_POST['lname']}}" required>
+                            value="{{$_POST['lname']}}" required>
                 </div>
 
                 <!-- Age field -->
