@@ -30,7 +30,7 @@ $bio = $_SESSION['bio'];
 <body>
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/328/dating">Latin Love</a>
-    <a class="navbar-brand" href="/328/dating-dev/dating-repo/dating/admin">Admin</a>
+    <a class="navbar-brand" href="/328/dating/admin">Admin</a>
 </nav>
 <div class="p-2 border rounded m-5">
     <div class="form-row ml-2 mt-2">
