@@ -18,6 +18,7 @@
 <body>
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/328/dating">Latin Love</a>
+    <a class="navbar-brand" href="/328/dating-dev/dating-repo/dating/admin">Admin</a>
 </nav>
 <check if="{{isset(@profileEntryERRS)}}">
     <p class="alert alert-danger" role="alert">
