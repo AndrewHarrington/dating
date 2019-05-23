@@ -33,16 +33,23 @@
 class Database
 {
 
-    const INDOOR = array('TV',
-        'Movies',
-        'Cooking',
-        'Board Games',
-        'Puzzles',
-        'Reading',
-        'Card Games',
-        'Videos');
+    const INDOOR = array('tv',
+        'mov',
+        'cook',
+        'board',
+        'puzz',
+        'read',
+        'card',
+        'video');
 
-    const OUTDOOR = array();
+    const OUTDOOR = array(
+        'hike',
+        'bike',
+        'swim',
+        'collect',
+        'walk',
+        'climb'
+    );
 
     const INSERT_MEMBER =
         "
@@ -58,7 +65,7 @@ class Database
 
     const INSERT_INTERESTS =
         "
-          INSERT INTO member_interests('member_id', 'interest_id')
+          INSERT INTO member_interests(member_id, interests_id)
           VALUES (:member_id, :interest_id);
         ";
 
@@ -151,7 +158,7 @@ class Database
             $this->_getIdentity->execute();
             $id = $this->_getIdentity->fetch(PDO::FETCH_ASSOC);
             print_r($id);
-            $id = $id['@@indentity'];
+            $id = $id['@@identity'];
             echo $id;
             $this->insertInterests($member, $id);
         }
@@ -165,7 +172,8 @@ class Database
         $this->_newInterests->bindParam(':member_id', $id);
 
         foreach ($indoor as $key => $value){
-            $found = array_search($value, self::INDOOR);
+            $found = array_search($value, self::INDOOR) + 1;
+            echo $value . ' - ' . $found;
             $this->_newInterests->bindParam(':interest_id', $found);
             $this->_newInterests->execute();
         }
@@ -173,6 +181,7 @@ class Database
         //+9
         foreach ($outdoor as $key => $value){
             $found = array_search($value, self::OUTDOOR) + 9;
+            echo $value . ' - ' . $found;
             $this->_newInterests->bindParam(':interest_id', $found);
             $this->_newInterests->execute();
         }
