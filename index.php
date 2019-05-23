@@ -1,7 +1,7 @@
 <?php
 /**\
  * User: Andrew Harrington
- * Date: 4/8/2019
+ * Date: 5/14/2019
  */
 
 //error reporting
@@ -15,6 +15,7 @@ require('model/functions.php');
 session_start();
 
 $f3 = Base::instance();
+
 $indoor = array('tv'=>'TV',
                 'mov'=>'Movies',
                 'cook'=>'Cooking',
@@ -98,14 +99,18 @@ $f3->route("GET|POST /interests", function($f3){
             $user->setInDoorInterests($_POST['indoor']);
             $user->setOutDoorInterests($_POST['outdoor']);
             //reroute
-            $f3->reroute("/profile");
+            $f3->reroute("/summary");
         }
     }
     $view = new Template();
     echo $view->render("views/interests.php");
 });
 
-$f3->route("GET|POST /profile", function(){
+$f3->route("GET|POST /summary", function(){
+    //save the user to the db
+    $db = new Database();
+    $db->insertMember($_SESSION['user']);
+
     $view = new Template();
     echo $view->render("views/profile.php");
 });
