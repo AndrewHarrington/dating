@@ -16,6 +16,7 @@ session_start();
 
 $f3 = Base::instance();
 
+$db= new Database();
 $indoor = array('tv'=>'TV',
                 'mov'=>'Movies',
                 'cook'=>'Cooking',
@@ -81,7 +82,7 @@ $f3->route("GET|POST /profileEntry", function($f3){
             }
             else{
                 //reroute
-                $f3->reroute('/profile');
+                $f3->reroute('/summary');
             }
         }
     }
@@ -106,13 +107,24 @@ $f3->route("GET|POST /interests", function($f3){
     echo $view->render("views/interests.php");
 });
 
-$f3->route("GET|POST /summary", function(){
+$f3->route("GET|POST /summary", function($f3){
     //save the user to the db
-    $db = new Database();
+    global $db;
+    $f3->set('db', $db);
     $db->insertMember($_SESSION['user']);
 
     $view = new Template();
     echo $view->render("views/profile.php");
+});
+
+$f3->route("GET|POST /admin", function ($f3){
+    global $db;
+    //get all of the user data
+    $data = $db->getMembers();
+    $f3->set('data', $data);
+    //display the data to a table
+    $view = new Template();
+    echo $view->render("views/admin.html");
 });
 
 $f3->run();
