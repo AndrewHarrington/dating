@@ -33,7 +33,9 @@ class PremiumMember extends Member
     private $_outDoorInterests;
 
     /**
-     * @return mixed
+     * indoor getter
+     *
+     * @return mixed - The current indoor interests
      */
     public function getInDoorInterests()
     {
@@ -41,7 +43,9 @@ class PremiumMember extends Member
     }
 
     /**
-     * @param mixed $inDoorInterests
+     * indoor setter
+     *
+     * @param mixed $inDoorInterests - The new indoor interests
      */
     public function setInDoorInterests($inDoorInterests)
     {
@@ -49,7 +53,9 @@ class PremiumMember extends Member
     }
 
     /**
-     * @return mixed
+     * outdoor getter
+     *
+     * @return mixed - The current outdoor interests
      */
     public function getOutDoorInterests()
     {
@@ -57,13 +63,20 @@ class PremiumMember extends Member
     }
 
     /**
-     * @param mixed $outDoorInterests
+     * outdoor setter
+     *
+     * @param mixed $outDoorInterests - The new outdoor interests
      */
     public function setOutDoorInterests($outDoorInterests)
     {
         $this->_outDoorInterests = $outDoorInterests;
     }
 
+    /**
+     * Gives the "pretty" version of the interests arrays
+     *
+     * @return mixed|string - The string version of the interests arrays combined
+     */
     public function interestsToString(){
 
         $indoor = $this->_inDoorInterests;

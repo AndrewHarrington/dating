@@ -114,8 +114,12 @@ class Database
     }
 
 
+    /**
+     * Connects to the database and stores the connection inside the class
+     */
     public function connect(){
-        require_once('/home/aharring/db-connect.php');
+        $user = $_SERVER['USER'];
+        require_once("/home/$user/db-connect.php");
 
         // Make the connection
         try {
@@ -133,6 +137,10 @@ class Database
         $this->_getInterests = $dbc->prepare(self::GET_INTERESTS_FOR_MEMBER);
     }
 
+    /**
+     * Inserts a new Member object
+     * @param $member - The member whose data is going to be inserted
+     */
     public function insertMember($member){
         $premium = 0;
         if($member instanceof PremiumMember){
@@ -182,16 +190,33 @@ class Database
 
     }
 
+    /**
+     * Gets a list of every member in the database
+     * @return mixed - Associative array that contains each row selected as a key and the value is
+     *     another associative array with column names as keys and data as values
+     */
     public function getMembers(){
         $this->_getMembers->execute();
         return $this->_getMembers->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Gets the data for a member with a given id
+     * @param $memberID - The id of the member to be found
+     * @return mixed - The data for the member found
+     */
     public function getMember($memberID){
         $this->_getMember->execute($memberID);
+        return $this->_getMember->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Gets all of the interests for a given member
+     * @param $memberID - The id of the member whose interests are to be retrieved
+     * @return mixed - The interets found
+     */
     public function getInterests($memberID){
         $this->_getInterests->execute($memberID);
+        return $this->_getInterests->fetchAll(PDO::FETCH_ASSOC);
     }
 }

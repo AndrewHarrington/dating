@@ -41,7 +41,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * fname getter
+     *
+     * @return mixed - The first name of the user
      */
     public function getFname()
     {
@@ -49,7 +51,9 @@ class Member
     }
 
     /**
-     * @param mixed $_fname
+     * fname setter
+     *
+     * @param mixed $_fname - The new first name to be set
      */
     public function setFname($_fname)
     {
@@ -57,7 +61,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * lname getter
+     *
+     * @return mixed - The current last name
      */
     public function getLname()
     {
@@ -65,7 +71,9 @@ class Member
     }
 
     /**
-     * @param mixed $_lname
+     * lname setter
+     *
+     * @param mixed $_lname - The new last name
      */
     public function setLname($_lname)
     {
@@ -73,7 +81,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * age getter
+     *
+     * @return mixed - The current age
      */
     public function getAge()
     {
@@ -81,7 +91,9 @@ class Member
     }
 
     /**
-     * @param mixed $_age
+     * age setter
+     *
+     * @param mixed $_age - The new age
      */
     public function setAge($_age)
     {
@@ -89,7 +101,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * gender getter
+     *
+     * @return mixed - The current gender
      */
     public function getGender()
     {
@@ -97,7 +111,9 @@ class Member
     }
 
     /**
-     * @param mixed $_gender
+     * gender setter
+     *
+     * @param mixed $_gender - The new gender
      */
     public function setGender($_gender)
     {
@@ -105,7 +121,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * phone number getter
+     *
+     * @return mixed - The current phone number
      */
     public function getPhone()
     {
@@ -113,7 +131,9 @@ class Member
     }
 
     /**
-     * @param mixed $_phone
+     * phone number setter
+     *
+     * @param mixed $_phone - The new phone number
      */
     public function setPhone($_phone)
     {
@@ -121,7 +141,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * email getter
+     *
+     * @return mixed - The current value of email
      */
     public function getEmail()
     {
@@ -129,7 +151,9 @@ class Member
     }
 
     /**
-     * @param mixed $_email
+     * email setter
+     *
+     * @param mixed $_email - The new value of email
      */
     public function setEmail($_email)
     {
@@ -137,7 +161,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * state getter
+     *
+     * @return mixed - Gets the current value of state
      */
     public function getState()
     {
@@ -145,7 +171,9 @@ class Member
     }
 
     /**
-     * @param mixed $_state
+     * state setter
+     *
+     * @param mixed $_state - The new value to state
      */
     public function setState($_state)
     {
@@ -153,7 +181,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * seeking getter
+     *
+     * @return mixed - The current value of seeking
      */
     public function getSeeking()
     {
@@ -161,7 +191,9 @@ class Member
     }
 
     /**
-     * @param mixed $_seeking
+     * seeking setter
+     *
+     * @param mixed $_seeking - The new seeking to be set
      */
     public function setSeeking($_seeking)
     {
@@ -169,7 +201,9 @@ class Member
     }
 
     /**
-     * @return mixed
+     * bio getter
+     *
+     * @return mixed - The current bio being stored
      */
     public function getBio()
     {
@@ -177,7 +211,9 @@ class Member
     }
 
     /**
-     * @param mixed $_bio
+     * bio setter
+     *
+     * @param mixed $_bio - The new bio to be set
      */
     public function setBio($_bio)
     {
